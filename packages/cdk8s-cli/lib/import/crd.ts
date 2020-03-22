@@ -26,7 +26,7 @@ export class CustomResourceDefinition {
   private readonly schema: any;
   private readonly group: string;
   private readonly version: string;
-  private readonly kind: string;
+  readonly kind: string;
   private readonly fqn: string;
 
   constructor(manifest: CustomResourceApiObject) {
@@ -102,7 +102,7 @@ export class ImportCustomResourceDefinition extends ImportBase {
 
     return yaml.parseAllDocuments(manifest)
                .map((doc: yaml.ast.Document) => doc.toJSON())
-               .filter((doc: CustomResourceApiObject) => doc.kind === 'CustomResourceApiObject');
+               .filter((doc) => (doc as CustomResourceApiObject).kind === 'CustomResourceDefinition');
   }
 
   private readonly customResourceDefinitions: CustomResourceDefinition[] = [];

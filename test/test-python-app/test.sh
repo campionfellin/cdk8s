@@ -2,7 +2,7 @@
 set -e
 scriptdir=$(cd $(dirname $0) && pwd)
 cd $(mktemp -d)
-mkdir test && cd test
+mkdir -p test && cd test
 
 # initialize an empty project
 cdk8s init python-app

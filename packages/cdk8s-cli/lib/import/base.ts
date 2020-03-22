@@ -26,7 +26,7 @@ export abstract class ImportBase {
     const code = new CodeMaker();
 
     const outdir = path.resolve(options.outdir);
-    await fs.mkdirp(outdir);
+    await fs.ensureDirSync(outdir);
     const isTypescript = options.targetLanguage === Language.TYPESCRIPT
 
     for (const name of this.moduleNames) {
@@ -41,16 +41,20 @@ export abstract class ImportBase {
       } 
     }
 
-    if (isTypescript) return
+    if (isTypescript) return;
 
     // this is not typescript, so we generate in a staging directory and harvest the code
     await withTempDir('importer', async () => {
       await code.save('.');
 
-      await this.moduleNames.forEach(name => jsiiCompile('.', {
-        main: name,
-        name,
-      }))
+      for (const name of this.moduleNames) {
+        await jsiiCompile('.', {
+          main: name,
+          name,
+        })
+
+      }
+
       const pacmak = require.resolve('jsii-pacmak/bin/jsii-pacmak');
       await shell(pacmak, [ '--target', options.targetLanguage, '--code-only' ]);
       await this.harvestCode(options, outdir);
@@ -73,10 +77,10 @@ export abstract class ImportBase {
   }
 
   private async harvestPython(targetdir: string) {
-    this.moduleNames.forEach(name => async () => {
+    for (const name of this.moduleNames) {
       const target = path.join(targetdir, name);
       await fs.move(`dist/python/src/${name}`, target, { overwrite: true });
-    });
+    }
   }
 }
 

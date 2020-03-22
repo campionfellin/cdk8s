@@ -31,6 +31,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@types/node": "13.7.0",
+    "@aws-cdk/core": "^1.26.0",
     "cdk8s": "0.0.0",
     "codemaker": "^0.22.0",
     "constructs": "^2.0.0",

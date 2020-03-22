@@ -1,5 +1,8 @@
 name: Build
-on: [pull_request]
+on:
+  push:
+    branches:
+      - issue17-build
 
 jobs:
   build:

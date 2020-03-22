@@ -66,14 +66,13 @@ export async function jsiiCompile(workdir: string, options: JsiiCompileOptions) 
 
   for (const mod of modules) {
     const sourcedir = path.dirname(require.resolve(`${mod}/package.json`));
-    await fs.mkdirp(path.join(workdir, path.join('node_modules', path.dirname(mod))));
+    await fs.ensureDirSync(path.join(workdir, path.join('node_modules', path.dirname(mod))));
     await fs.ensureSymlink(sourcedir, path.join(workdir, 'node_modules', mod));
+    await fs.writeFile(path.join(workdir, 'package.json'), JSON.stringify(pkg, undefined, 2));
+
+    await shell(compiler, args, { 
+      cwd: workdir,
+      stdio: [ 'inherit', stdout ? 'inherit' : 'ignore', 'inherit' ]
+    });
   }
-
-  await fs.writeFile(path.join(workdir, 'package.json'), JSON.stringify(pkg, undefined, 2));
-
-  await shell(compiler, args, { 
-    cwd: workdir,
-    stdio: [ 'inherit', stdout ? 'inherit' : 'ignore', 'inherit' ]
-  });
 }

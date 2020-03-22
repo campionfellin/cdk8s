@@ -19,7 +19,7 @@ export async function withTempDir(dirname: string, closure: () => Promise<void>)
   const prevdir = process.cwd();
   const parent = await fs.mkdtemp(path.join(os.tmpdir(), 'cdk8s.'));
   const workdir = path.join(parent, dirname);
-  await fs.mkdirp(workdir);
+  await fs.ensureDirSync(workdir);
   try {
     process.chdir(workdir);
     await closure();

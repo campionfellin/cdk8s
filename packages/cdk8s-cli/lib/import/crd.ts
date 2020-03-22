@@ -6,7 +6,7 @@ import * as yaml from 'yaml';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
-interface CustomResourceApiObject {
+export interface CustomResourceApiObject {
   apiVersion?: string;
   kind?: string;
   metadata?: {

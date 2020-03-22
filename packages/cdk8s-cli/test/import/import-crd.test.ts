@@ -4,7 +4,8 @@ import * as fs from 'fs';
 import { ImportCustomResourceDefinition } from '../../lib/import/crd';
 import { expectImportMatchSnapshot } from './util';
 
-const jenkinsCrd = yaml.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'jenkins_crd.yaml'), 'utf-8'));
+const jenkinsCrd = yaml.parseAllDocuments(fs.readFileSync(path.join(__dirname, 'fixtures', 'jenkins_crd.yaml'), 'utf-8'))
+                       .map((doc: yaml.ast.Document) => doc.toJSON());
 
 expectImportMatchSnapshot('jenkins', () => new ImportCustomResourceDefinition(jenkinsCrd));
 

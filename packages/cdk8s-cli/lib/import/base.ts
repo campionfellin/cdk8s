@@ -34,7 +34,7 @@ export abstract class ImportBase {
       const fileName = `${name}.ts`;
       code.openFile(fileName);
       code.indentation = 2;
-      await this.generateTypeScript(code, fileName);
+      await this.generateTypeScript(code, name);
       code.closeFile(fileName);
 
       if (isTypescript) {

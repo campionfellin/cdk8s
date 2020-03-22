@@ -96,28 +96,29 @@ export class ImportCustomResourceDefinition extends ImportBase {
       manifest = await fs.readFile(source, 'utf-8');
     }
 
-  
     if (!manifest) {
       return undefined;
     }
 
-    return yaml.parseAllDocuments(manifest).map((doc: yaml.ast.Document) => doc.toJSON());
+    return yaml.parseAllDocuments(manifest)
+               .map((doc: yaml.ast.Document) => doc.toJSON())
+               .filter((doc: CustomResourceApiObject) => doc.kind === 'CustomResourceApiObject');
   }
 
-  private readonly CRDs: CustomResourceDefinition[] = [];
+  private readonly customResourceDefinitions: CustomResourceDefinition[] = [];
   
   constructor(manifest: CustomResourceApiObject[]) {
     super();
 
-    this.CRDs = manifest?.map(obj => new CustomResourceDefinition(obj));
+    this.customResourceDefinitions = manifest?.map(obj => new CustomResourceDefinition(obj));
   }
 
   public get moduleNames() {
-    return this.CRDs.map(crd => crd.moduleName);
+    return this.customResourceDefinitions.map(crd => crd.moduleName);
   }
 
   protected async generateTypeScript(code: CodeMaker, moduleName: string) {
-    this.CRDs.filter(crd => moduleName === crd.moduleName).map(crd => crd.generateTypeScript(code));
+    this.customResourceDefinitions.filter(crd => moduleName === crd.moduleName).map(crd => crd.generateTypeScript(code));
   }
 }
 

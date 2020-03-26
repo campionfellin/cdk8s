@@ -7,7 +7,6 @@ on:
 jobs:
   build_artifact:
     name: Build and upload artifact
-    if: github.repository == 'awslabs/cdk8s'
     runs-on: ubuntu-latest
     container:
       image: jsii/superchain
@@ -39,6 +38,7 @@ jobs:
 
   release_maven:
     name: Release to Maven
+    if: github.repository == 'awslabs/cdk8s'
     needs: build_artifact
     runs-on: ubuntu-latest
     container:
@@ -59,6 +59,7 @@ jobs:
 
   release_npm:
     name: Release to NPM
+    if: github.repository == 'awslabs/cdk8s'
     needs: build_artifact
     runs-on: ubuntu-latest
     container:
@@ -75,6 +76,7 @@ jobs:
 
   release_nuget:
     name: Release to Nuget
+    if: github.repository == 'awslabs/cdk8s'
     needs: build_artifact
     runs-on: ubuntu-latest
     container:
@@ -91,6 +93,7 @@ jobs:
 
   release_pypi:
     name: Release to PyPi
+    if: github.repository == 'awslabs/cdk8s'
     needs: build_artifact
     runs-on: ubuntu-latest
     container:

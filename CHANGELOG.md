@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.19.0](https://github.com/campionfellin/cdk8s/compare/v0.18.0...v0.19.0) (2020-04-11)
+
+
+### Bug Fixes
+
+* **gha:** Fix conditional homebrew release script ([5ecb143](https://github.com/campionfellin/cdk8s/commit/5ecb1434a8e4b2622cf3e001929a72c511ab89fa))
+* **gha:** Fix release script to run on fork ([32f5af0](https://github.com/campionfellin/cdk8s/commit/32f5af04d88d87fbde9cdb02c39be7ffdcea1771))
+
 ## [0.18.0](https://github.com/awslabs/cdk8s/compare/v0.17.0...v0.18.0) (2020-04-10)
 
 

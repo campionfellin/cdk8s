@@ -5,7 +5,7 @@ set -euo pipefail
 root=$(cd $(dirname $0)/.. && pwd)
 cd ${root}
 
-repo="awslabs/cdk8s"
+repo="campionfellin/cdk8s"
 version="$(node -p "require('./package.json').version")"
 
 # skip if we already have a github release for this version

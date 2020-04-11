@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.21.0](https://github.com/campionfellin/cdk8s/compare/v0.18.0...v0.21.0) (2020-04-11)
+
 ## [0.20.0](https://github.com/campionfellin/cdk8s/compare/v0.18.0...v0.20.0) (2020-04-11)
 
 ## [0.19.0](https://github.com/campionfellin/cdk8s/compare/v0.18.0...v0.19.0) (2020-04-11)

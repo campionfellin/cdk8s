@@ -2,7 +2,7 @@ name: Build
 on: [pull_request]
 
 jobs:
-  build:
+  build-ubuntu:
     runs-on: ubuntu-latest
     container:
       image: jsii/superchain
@@ -24,3 +24,22 @@ jobs:
       - name: integration tests
         run: yarn integ
 
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: installing dependencies
+        run: |
+          pip3 install pipenv
+          yarn install
+      - name: compile
+        run: |
+          tools/align-version.sh
+          yarn build
+      - name: unit tests
+        run: yarn test
+      - name: create bundle
+        run: yarn package
+      - name: integration tests
+        run: yarn integ

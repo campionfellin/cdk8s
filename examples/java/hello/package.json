@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "mvn install && mvn compile && cdk8s import --language java",
+    "build": "cdk8s import --language java",
     "synth": "cdk8s synth",
     "test": "echo 'no test for java yet.'"
   },

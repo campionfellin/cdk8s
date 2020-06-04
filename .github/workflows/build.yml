@@ -16,16 +16,16 @@ jobs:
         run: |
           pip3 install pipenv
           yarn install
+      - name: compile
+        run: |
+          tools/align-version.sh
+          yarn build
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: compile
-        run: |
-          tools/align-version.sh
-          yarn build
       - name: unit tests
         run: yarn test
       - name: create bundle

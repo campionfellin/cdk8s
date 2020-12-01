@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 scriptdir=$(cd $(dirname $0) && pwd)
 
@@ -10,6 +10,12 @@ mkdir test && cd test
 cp ${scriptdir}/cdk8s.yaml  .
 cp ${scriptdir}/mattermost_crd.yaml .
 cp ${scriptdir}/example_multiple_crd.yaml .
+
+echo "CAMPION"
+echo $PATH
+echo "%PATH%"
+where cdk8s
+ls .
 
 cdk8s import mattermost:=mattermost_crd.yaml --language python
 

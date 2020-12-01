@@ -22,7 +22,16 @@ cd ${staging}
 npm init -y > /dev/null
 npm install ${CDK8S_DIST}/js/*.tgz
 export PATH=${staging}/node_modules/.bin:$PATH
+# export PATH=${staging}/node_modules/bin:$PATH
+# export PATH=${staging}/node_modules/.bin/:$PATH
+# export PATH=${staging}/node_modules/bin/:$PATH
+# export PATH=${staging}/node_modules/.bin/cdk8s:$PATH
+# export PATH=${staging}/node_modules/bin/cdk8s:$PATH
 
-# restore working directory
-cd $cwd
-$@
+# ls -al ${staging}/node_modules/.bin/
+echo "BREAK"
+
+where cdk8s
+cdk8s --version
+
+echo "${staging}/node_modules/.bin/" >> $GITHUB_PATH

@@ -43,7 +43,7 @@ export async function synthApp(command: string, outdir: string) {
 
   if (!await fs.pathExists(outdir)) {
     console.error(`ERROR: synthesis failed, app expected to create "${outdir}"`);
-    process.exit(1);
+    // process.exit(1);
   }
 
   let found = false;

@@ -17,9 +17,11 @@ cdk8s init python-app
 # put some code in it
 cp ${scriptdir}/main.py .
 
+ls
 # build
 cdk8s synth
 
+ls
 # show output
 diff --strip-trailing-cr dist ${scriptdir}/expected
 
